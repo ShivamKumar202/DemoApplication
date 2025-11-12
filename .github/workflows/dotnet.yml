@@ -27,11 +27,3 @@ jobs:
 
       - name: Publish
         run: dotnet publish -c Release -o publish
-
-      - name: Deploy to Local IIS
-        run: |
-          Import-Module WebAdministration
-          Stop-Website -Name "MyApp"
-          Remove-Item "C:\inetpub\wwwroot\MyApp\*" -Recurse -Force
-          Copy-Item "publish\*" "C:\inetpub\wwwroot\MyApp" -Recurse
-          Start-Website -Name "MyApp"
